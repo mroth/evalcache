@@ -49,4 +49,18 @@ There is a convenience function to clear the cache called `_evalcache_clear`.
 
 ## Installation
 
-TODO: installation instructions for OMZ, antigen, prezto etc
+### [Antigen](https://github.com/zsh-users/antigen)
+
+Add `antigen bundle mroth/evalcache` to your `.zshrc` with your other bundle commands.
+
+Antigen will handle cloning the plugin for you automatically the next time you start zsh. You can also add the plugin to a running zsh with `antigen bundle mroth/evalcache` for testing before adding it to your `.zshrc`.
+
+### [Oh-My-Zsh](http://ohmyz.sh/)
+
+1. `cd ~/.oh-my-zsh/custom/plugins`
+2. `git clone https://github.com/mroth/evalcache`
+3. Add *evalcache* to your plugin list - edit `~.zshrc` and change `plugins=(...)` to `plugins=(... evalcache)`
+
+### [Zgen](https://github.com/tarjoilija/zgen)
+
+Add `zgen load mroth/evalcache` to your `.zshrc` file in the same function you're doing your other `zgen load` calls in. Zgen will handle automatically cloning the plugin for you the next time you do a `zgen save`.
