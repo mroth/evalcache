@@ -57,9 +57,17 @@ Antigen will handle cloning the plugin for you automatically the next time you s
 
 ### [Oh-My-Zsh](http://ohmyz.sh/)
 
-1. `cd ~/.oh-my-zsh/custom/plugins`
-2. `git clone https://github.com/mroth/evalcache`
-3. Add *evalcache* to your plugin list - edit `~.zshrc` and change `plugins=(...)` to `plugins=(... evalcache)`
+1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
+
+    ```sh
+    git clone https://github.com/mroth/evalcache ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/evalcache
+    ```
+
+2. Edit `~.zshrc` to add *evalcache* to your plugin list, 
+    ```diff
+    - plugins=(...)
+    + plugins=(... evalcache)
+    ```
 
 ### [Zgen](https://github.com/tarjoilija/zgen)
 
