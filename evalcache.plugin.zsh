@@ -7,7 +7,17 @@
 export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 
 function _evalcache () {
-  local cacheFile="$ZSH_EVALCACHE_DIR/init-${1##*/}.sh"
+  local cmdHash="nohash"
+
+  # Use md5 on MacOS
+  if command -v md5 > /dev/null; then
+    cmdHash=$(echo -n "$*" | md5)
+  # Fallback to md5sum
+  elif command -v md5sum > /dev/null; then
+    cmdHash=$(echo -n "$*" | md5sum | cut -d' ' -f1)
+  fi
+
+  local cacheFile="$ZSH_EVALCACHE_DIR/init-${1##*/}-${cmdHash}.sh"
 
   if [ "$ZSH_EVALCACHE_DISABLE" = "true" ]; then
     eval "$("$@")"
