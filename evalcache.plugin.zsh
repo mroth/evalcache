@@ -9,11 +9,9 @@ export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 function _evalcache () {
   local cmdHash="nohash"
 
-  # Use md5 on MacOS
-  if command -v md5 > /dev/null; then
+  if builtin command -v md5 > /dev/null; then
     cmdHash=$(echo -n "$*" | md5)
-  # Fallback to md5sum
-  elif command -v md5sum > /dev/null; then
+  elif builtin command -v md5sum > /dev/null; then
     cmdHash=$(echo -n "$*" | md5sum | cut -d' ' -f1)
   fi
 
