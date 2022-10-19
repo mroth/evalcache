@@ -3,10 +3,10 @@
 > zsh plugin to cache the output of a binary initialization command, intended
 > to help lower shell startup time.
 
-##  What it does
+## What it does
 
 There are lots of shell wrapper tools that follow the pattern of asking you to
-eval a specific init command in your shell startup, for example, rbenv ask
+eval a specific init command in your shell startup, for example, rbenv asks:
 
     eval "$(hub alias -s)"
 
@@ -22,7 +22,7 @@ Instead, after you load this plugin, you can replace that same command with:
 The first time this runs, it will cache the output of the command to a file,
 which will be sourced in the future instead when it exists.
 
-If you update a tool and expect ifor some reason that t's initialization might
+If you update a tool and expect for some reason that it's initialization might
 have changed, you can simply clear the cache and it will be regenerated.
 
 It also gracefully degrades to a no-op if the tool is no longer installed.
@@ -32,7 +32,7 @@ It also gracefully degrades to a no-op if the tool is no longer installed.
 Some informal benchmarks from my MacBook on my .zshrc:
 
 | command      | without | first run | subsequent runs | savings |
-|--------------|--------:|----------:|----------------:|--------:|
+| ------------ | ------: | --------: | --------------: | ------: |
 | rbenv init   |   ~65ms |     ~65ms |            ~8ms |     88% |
 | hub alias    |   ~30ms |     ~30ms |            ~6ms |     80% |
 | scmpuff init |   ~24ms |     ~25ms |           ~10ms |     58% |
@@ -59,15 +59,15 @@ Antigen will handle cloning the plugin for you automatically the next time you s
 
 1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
 
-    ```sh
-    git clone https://github.com/mroth/evalcache ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/evalcache
-    ```
+   ```sh
+   git clone https://github.com/mroth/evalcache ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/evalcache
+   ```
 
-2. Edit `~/.zshrc` to add *evalcache* to your plugin list, 
-    ```diff
-    - plugins=(...)
-    + plugins=(... evalcache)
-    ```
+2. Edit `~/.zshrc` to add _evalcache_ to your plugin list,
+   ```diff
+   - plugins=(...)
+   + plugins=(... evalcache)
+   ```
 
 ### [Zgen](https://github.com/tarjoilija/zgen)
 
