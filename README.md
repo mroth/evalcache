@@ -55,6 +55,14 @@ Add `antigen bundle mroth/evalcache` to your `.zshrc` with your other bundle com
 
 Antigen will handle cloning the plugin for you automatically the next time you start zsh. You can also add the plugin to a running zsh with `antigen bundle mroth/evalcache` for testing before adding it to your `.zshrc`.
 
+### [Fig](https://fig.io)
+
+Fig adds apps, shortcuts, and autocomplete to your existing terminal.
+
+Install `evalcache` in just one click.
+
+<a href="https://fig.io/plugins/other/evalcache_mroth" target="_blank"><img src="https://fig.io/badges/install-with-fig.svg" /></a>
+
 ### [Oh-My-Zsh](http://ohmyz.sh/)
 
 1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
