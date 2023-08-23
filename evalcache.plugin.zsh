@@ -17,18 +17,26 @@ function _evalcache () {
 
   local cacheFile="$ZSH_EVALCACHE_DIR/init-${1##*/}-${cmdHash}.sh"
 
+  local name
+  for i in {1..$#}; do
+    name=${@:$i:1}
+    if [[ $name != *'='* ]]; then
+      break
+    fi
+  done
+
   if [ "$ZSH_EVALCACHE_DISABLE" = "true" ]; then
     eval "$("$@")"
   elif [ -s "$cacheFile" ]; then
     source "$cacheFile"
   else
-    if type "$1" > /dev/null; then
-      (>&2 echo "$1 initialization not cached, caching output of: $*")
+    if type "$name" > /dev/null; then
+      (>&2 echo "$name initialization not cached, caching output of: $*")
       mkdir -p "$ZSH_EVALCACHE_DIR"
-      "$@" > "$cacheFile"
+      eval "$*" > "$cacheFile"
       source "$cacheFile"
     else
-      echo "evalcache ERROR: $1 is not installed or in PATH"
+      echo "evalcache ERROR: $name is not installed or in PATH"
     fi
   fi
 }
