@@ -47,5 +47,5 @@ function _evalcache () {
 }
 
 function _evalcache_clear () {
-  rm -i "$ZSH_EVALCACHE_DIR"/init-*
+  rm -i "$ZSH_EVALCACHE_DIR"/init-*.{sh,zwc}
 }
