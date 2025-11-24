@@ -38,6 +38,7 @@ function _evalcache () {
       echo "evalcache: ${name} initialization not cached, caching output of: $*" >&2
       mkdir -p "$ZSH_EVALCACHE_DIR"
       eval ${(q)@} > "$cacheFile"
+      zcompile "$cacheFile"
       source "$cacheFile"
     else
       echo "evalcache: ERROR: ${name} is not installed or in PATH" >&2
@@ -46,5 +47,5 @@ function _evalcache () {
 }
 
 function _evalcache_clear () {
-  rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
+  rm -i "$ZSH_EVALCACHE_DIR"/init-*.{sh,zwc}
 }
