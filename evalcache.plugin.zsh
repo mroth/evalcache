@@ -7,7 +7,7 @@
 export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 
 function _evalcache () {
-  local cmdHash="nohash" data="$*" name
+  local cmdHash=5381 data="$*" name c
 
   # use the first non-variable argument as the name
   for name in $@; do
@@ -21,11 +21,9 @@ function _evalcache () {
     data=${data}$(typeset -f "${name}")
   fi
 
-  if builtin command -v md5 > /dev/null; then
-    cmdHash=$(echo -n "${data}" | md5)
-  elif builtin command -v md5sum > /dev/null; then
-    cmdHash=$(echo -n "${data}" | md5sum | cut -d' ' -f1)
-  fi
+  for c in ${(s::)data}; do
+    (( cmdHash = (cmdHash * 33 + #c) & 0xffffffff ))
+  done
 
   local cacheFile="$ZSH_EVALCACHE_DIR/init-${name##*/}-${cmdHash}.sh"
 
